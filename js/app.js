@@ -35,10 +35,9 @@ function shuffle(array) {
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)  	cardElement.classList.add()
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
@@ -46,3 +45,37 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+let openCards = [];
+
+function openCard(card){
+	card.classList.toggle('open');
+}
+
+function displaySymbol(card){
+	card.classList.toggle('show');
+}
+
+function addToList(card){
+	openCards.push(card);
+}
+
+function hideCard(card){
+	card.ClassList.toggle('show');
+}
+
+function activeCard(card){
+	openCard(card);
+	displaySymbol(card);
+	addToList(card);
+
+
+}
+
+const deck = document.querySelector('.deck');
+
+deck.addEventListener('click', respondToTheClick);
+
+function respondToTheClick(event){
+	activeCard(event.target);
+}
