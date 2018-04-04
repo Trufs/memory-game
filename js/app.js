@@ -48,6 +48,7 @@ function shuffle(array) {
 const movesDisplay = document.querySelector('.moves');
 let openCards = [];
 let moveCounter = 0;
+let pairCounter = 0;
 
 function incrementMoves(){
 	moveCounter += 1;
@@ -74,6 +75,10 @@ function lockCardsOpen(listOfCards){ //it works
 	}
 	openCards = [];
 	incrementMoves();
+	pairCounter += 1;
+	if (pairCounter === 8){
+		alert(`Congrats! You won in ${moveCounter} moves.`);
+	}
 }
 
 function hideCards(listOfCards){
