@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-bolt"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-cube"></i>', '<i class="fa fa-diamond"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-bolt"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-cube"></i>', '<i class="fa fa-diamond"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-paper-plane-o"></i>'];
 
 /*
  * Display the cards on the page
@@ -9,6 +9,16 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+ const shuffledList = shuffle(listOfCards);
+ const cardElements = document.getElementsByClassName('card');
+
+ for (let i =0; i<shuffledList.length; i++) {
+ 	const oneCard = cardElements[i];
+	oneCard.innerHTML=shuffledList[i];
+
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -28,7 +38,7 @@ function shuffle(array) {
 
 /*
  * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - display the card's symbol (put this functionality in another function that you call from this one)  	cardElement.classList.add()
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
