@@ -39,6 +39,7 @@ function shuffle(array) {
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
@@ -49,33 +50,69 @@ function shuffle(array) {
 let openCards = [];
 
 function openCard(card){
-	card.classList.toggle('open');
+	card.classList.toggle('open'); //it works
 }
 
 function displaySymbol(card){
-	card.classList.toggle('show');
+	card.classList.toggle('show'); //it works
 }
 
 function addToList(card){
-	openCards.push(card);
+	openCards.push(card); //it works
 }
 
-function hideCard(card){
-	card.ClassList.toggle('show');
+function lockCardsOpen(listOfCards){ //it works
+
+	for (let i =0;i<listOfCards.length;i++){
+		const oneCard=listOfCards[i];
+		oneCard.classList.add('match');
+	}
+
+	openCards = [];
+}
+
+function hideCards(listOfCards){
+	console.log('hello');			//this works
+	for (let i =0;i<listOfCards.length;i++){
+		console.log('hi');	//works
+		const oneCard=listOfCards[i];
+		oneCard.classList.toggle('show');
+		oneCard.classList.toggle('open');
+	}
+
+	openCards = [];
 }
 
 function activeCard(card){
+	let cardSymbol = card.querySelector("i");
 	openCard(card);
 	displaySymbol(card);
 	addToList(card);
 
+	if (openCards.length>1){
+		if (openCards[0].innerHTML === openCards[1].innerHTML){ //this works
+			if(openCards[0] !== openCards[1]){ //prevents adding matched class to a card with double clicking
+			console.log("same");
+			lockCardsOpen(openCards);
+		}
+		}
+		else {
+			deck.addEventListener('dblclick', respondToDblClick);
 
+		}
+			}
 }
 
 const deck = document.querySelector('.deck');
 
 deck.addEventListener('click', respondToTheClick);
 
+//functions to handle Events
+
 function respondToTheClick(event){
 	activeCard(event.target);
+}
+
+function respondToDblClick(){
+	hideCards(openCards);
 }
