@@ -75,11 +75,7 @@ function incrementMoves(){
 }
 
 function openCard(card){
-	card.classList.toggle('open');
-}
-
-function displaySymbol(card){
-	card.classList.toggle('show');
+	card.classList.add('open','show');
 }
 
 function addToList(card){
@@ -104,9 +100,7 @@ function lockCardsOpen(listOfCards){
 function hideCards(listOfCards){
 	for (let i =0;i<listOfCards.length;i++){
 		const oneCard=listOfCards[i];
-		oneCard.classList.remove('show');
-		oneCard.classList.remove('open');
-		oneCard.classList.remove('match');
+		oneCard.classList.remove('show', 'open', 'match');
 	}
 	openCards = [];
 	deck.removeEventListener('click', hideUnmatchedPair);
@@ -114,8 +108,6 @@ function hideCards(listOfCards){
 
 function activeCard(card){
 	openCard(card);
-	displaySymbol(card);
-	addToList(card);
 
 	if (openCards.length>1){
 
@@ -137,7 +129,13 @@ restart.addEventListener('click', restartFunction);
 
 //functions to handle Events
 function respondToTheClick(event){
-	activeCard(event.target);
+	addToList(event.target);
+	if(openCards[0] === openCards[1]){
+		openCards.pop(event.target);
+	}
+	else{
+		activeCard(event.target);
+	}
 }
 
 function hideUnmatchedPair(){
