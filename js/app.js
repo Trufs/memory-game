@@ -13,12 +13,12 @@ const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"><
  const shuffledList = shuffle(listOfCards);
  const cardElements = document.getElementsByClassName('card');
 
- for (let i =0; i<shuffledList.length; i++) {
- 	const oneCard = cardElements[i];
-	oneCard.innerHTML=shuffledList[i];
-
+function shuffleCards(){
+	 for (let i =0; i<shuffledList.length; i++) {
+	 	const oneCard = cardElements[i];
+		oneCard.innerHTML=shuffledList[i];
+	}
 }
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -42,11 +42,11 @@ function shuffle(array) {
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  	  + add star rating: starts with 3 stars, goes down after x moves
- 	  + add a timer
+
  	  + add a reset table functionality
+ 	  + add a timer
  	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
  	  -
  */
@@ -73,18 +73,18 @@ function incrementMoves(){
 }
 
 function openCard(card){
-	card.classList.toggle('open'); //it works
+	card.classList.toggle('open');
 }
 
 function displaySymbol(card){
-	card.classList.toggle('show'); //it works
+	card.classList.toggle('show');
 }
 
 function addToList(card){
-	openCards.push(card); //it works
+	openCards.push(card);
 }
 
-function lockCardsOpen(listOfCards){ //it works
+function lockCardsOpen(listOfCards){
 
 	for (let i =0;i<listOfCards.length;i++){
 		const oneCard=listOfCards[i];
@@ -107,6 +107,7 @@ function hideCards(listOfCards){
 	}
 	openCards = [];
 	incrementMoves();
+	deck.removeEventListener('click', hideUnmatchedPair);
 }
 
 function activeCard(card){
@@ -122,7 +123,7 @@ function activeCard(card){
 			}
 		}
 		else {
-			deck.addEventListener('dblclick', respondToDblClick);
+			deck.addEventListener('click', hideUnmatchedPair);
 
 		}
 	}
@@ -136,6 +137,7 @@ function respondToTheClick(event){
 	activeCard(event.target);
 }
 
-function respondToDblClick(){  //perhaps this could be avoided if I called hideCards like hideCards(event, openCard)
+function hideUnmatchedPair(){
 	hideCards(openCards);
 }
+
