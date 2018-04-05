@@ -10,10 +10,10 @@ const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"><
  *   - add each card's HTML to the page
  */
 
- const shuffledList = shuffle(listOfCards);
- const cardElements = document.getElementsByClassName('card');
+const cardElements = document.getElementsByClassName('card');
 
 function shuffleCards(){
+	 const shuffledList = shuffle(listOfCards);
 	 for (let i =0; i<shuffledList.length; i++) {
 	 	const oneCard = cardElements[i];
 		oneCard.innerHTML=shuffledList[i];
@@ -50,12 +50,13 @@ function shuffle(array) {
  	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
  	  -
  */
-
+shuffleCards();
 let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
 const movesDisplay = document.querySelector('.moves');
 const star = document.getElementsByClassName('fa-star');
+
 
 function removeStar(moveCounter){
 	if (moveCounter===10){
@@ -69,7 +70,8 @@ function removeStar(moveCounter){
 function incrementMoves(){
 	moveCounter += 1;
 	movesDisplay.textContent = moveCounter;
-	removeStar(moveCounter);
+
+	removeStar(moveCounter);  //perhaps it would be better to check nb of moves here rather than in removeStar
 }
 
 function openCard(card){
@@ -92,7 +94,7 @@ function lockCardsOpen(listOfCards){
 	}
 
 	openCards = [];
-	incrementMoves();
+
 	pairCounter += 1;
 	if (pairCounter === 8){
 		alert(`Congrats! You won in ${moveCounter} moves.`);
@@ -102,11 +104,11 @@ function lockCardsOpen(listOfCards){
 function hideCards(listOfCards){
 	for (let i =0;i<listOfCards.length;i++){
 		const oneCard=listOfCards[i];
-		oneCard.classList.toggle('show');
-		oneCard.classList.toggle('open');
+		oneCard.classList.remove('show');
+		oneCard.classList.remove('open');
+		oneCard.classList.remove('match');
 	}
 	openCards = [];
-	incrementMoves();
 	deck.removeEventListener('click', hideUnmatchedPair);
 }
 
@@ -118,19 +120,20 @@ function activeCard(card){
 	if (openCards.length>1){
 
 		if (openCards[0].innerHTML === openCards[1].innerHTML){
-			if(openCards[0] !== openCards[1]){  //prevents adding matched class to a card with double clicking
+			if(openCards[0] !== openCards[1]){  //prevents adding 'matched' class to a card with double clicking
 			lockCardsOpen(openCards);
 			}
 		}
 		else {
 			deck.addEventListener('click', hideUnmatchedPair);
-
 		}
 	}
 }
 
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', respondToTheClick);
+const restart = document.querySelector('.restart')
+restart.addEventListener('click', restartFunction);
 
 //functions to handle Events
 function respondToTheClick(event){
@@ -139,5 +142,14 @@ function respondToTheClick(event){
 
 function hideUnmatchedPair(){
 	hideCards(openCards);
+	incrementMoves();
 }
 
+function restartFunction(){
+	moveCounter = 0;
+	pairCounter = 0;
+	movesDisplay.textContent = moveCounter;
+	hideCards(cardElements);
+	shuffleCards();
+	//TODO: reset stars
+}
