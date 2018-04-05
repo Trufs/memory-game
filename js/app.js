@@ -44,15 +44,32 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ 	  + add star rating: starts with 3 stars, goes down after x moves
+ 	  + add a timer
+ 	  + add a reset table functionality
+ 	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
+ 	  -
  */
-const movesDisplay = document.querySelector('.moves');
+
 let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
+const movesDisplay = document.querySelector('.moves');
+const star = document.getElementsByClassName('fa-star');
+
+function removeStar(moveCounter){
+	if (moveCounter===10){
+		star[0].remove();
+	}
+	if (moveCounter===15){
+		star[1].remove();
+	}
+}
 
 function incrementMoves(){
 	moveCounter += 1;
 	movesDisplay.textContent = moveCounter;
+	removeStar(moveCounter);
 }
 
 function openCard(card){
@@ -73,6 +90,7 @@ function lockCardsOpen(listOfCards){ //it works
 		const oneCard=listOfCards[i];
 		oneCard.classList.add('match');
 	}
+
 	openCards = [];
 	incrementMoves();
 	pairCounter += 1;
@@ -91,7 +109,6 @@ function hideCards(listOfCards){
 	incrementMoves();
 }
 
-
 function activeCard(card){
 	openCard(card);
 	displaySymbol(card);
@@ -101,19 +118,15 @@ function activeCard(card){
 
 		if (openCards[0].innerHTML === openCards[1].innerHTML){
 			if(openCards[0] !== openCards[1]){  //prevents adding matched class to a card with double clicking
-			console.log("same");
 			lockCardsOpen(openCards);
 			}
 		}
-
 		else {
 			deck.addEventListener('dblclick', respondToDblClick);
 
 		}
 	}
 }
-
-
 
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', respondToTheClick);
@@ -123,6 +136,6 @@ function respondToTheClick(event){
 	activeCard(event.target);
 }
 
-function respondToDblClick(){
+function respondToDblClick(){  //perhaps this could be avoided if I called hideCards like hideCards(event, openCard)
 	hideCards(openCards);
 }
