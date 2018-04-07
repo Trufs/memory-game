@@ -46,9 +46,9 @@ function shuffle(array) {
  	  + add star rating: starts with 3 stars, goes down after x moves
 	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
 	  + add a reset table functionality
-
+  	  + change msg to a modal
 	  + reset stars too
-	  + change msg to a modal
+
  	  + add a timer
 
  	  -
@@ -58,7 +58,8 @@ let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
 const movesDisplay = document.querySelector('.moves');
-const stars = document.getElementsByClassName('fa-star');
+const starDisplay = document.querySelector('.stars');
+const starWrappers = starDisplay.getElementsByTagName('li');
 const finished = document.querySelector('.message');
 const message = document.querySelector('.modal-content');
 const ranking = document.querySelector('.ranking');
@@ -67,26 +68,27 @@ let rankingStars = '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i cla
 
 function removeStar(moveCounter){
 	if (moveCounter===10){
-		stars[0].remove();
+		starWrappers[0].remove();
 		rankingStars = '<i class="fa fa-star"></i> <i class="fa fa-star"></i>';
 	}
 	if (moveCounter===15){
-		stars[1].remove();
+		starWrappers[1].remove();
 		rankingStars = '<i class="fa fa-star"></i>';
 	}
 }
 
 function resetStars(){
-	while (stars.length<3){
-		//add star to a star display
+	for (let i=0;i<=3-starWrappers.length;i++){
+		starDisplay.insertAdjacentHTML('beforeend', '<li><i class="fa fa-star"></i></li>');
 	}
 }
 
 function incrementMoves(){
 	moveCounter += 1;
 	movesDisplay.textContent = moveCounter;
-
-	removeStar(moveCounter);  //perhaps it would be better to check nb of moves here rather than in removeStar
+	if (moveCounter === 10 || moveCounter === 15){
+		removeStar(moveCounter);
+	}
 }
 
 function openCard(card){
@@ -164,9 +166,9 @@ function hideUnmatchedPair(){
 function restartFunction(){
 	moveCounter = 0;
 	pairCounter = 0;
-	 movesDisplay.textContent = moveCounter;
+	movesDisplay.textContent = moveCounter;
 	hideCards(cardElements);
 	shuffleCards();
 	finished.classList.remove('modal');
-	//TODO: reset stars
+	resetStars();
 }
