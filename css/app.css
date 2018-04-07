@@ -108,3 +108,37 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for the Modal
+ */
+
+.message {
+    display: none;
+}
+
+.modal{
+    display: block;
+    z-index: 1;
+    position: fixed;
+    background-color: #fefefe;
+    margin:auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+    height: 40%;
+    border-radius: 20px;
+}
+
+.modal-title {
+    margin: 0 auto;
+    font-size: 4em;
+}
+
+.modal-content {
+    font-size: 2em;
+}
+
+.restarto {
+    cursor: pointer;
+}

@@ -59,14 +59,20 @@ let moveCounter = 0;
 let pairCounter = 0;
 const movesDisplay = document.querySelector('.moves');
 const stars = document.getElementsByClassName('fa-star');
+const finished = document.querySelector('.message');
+const message = document.querySelector('.modal-content');
+const ranking = document.querySelector('.ranking');
+let rankingStars = '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
 
 
 function removeStar(moveCounter){
 	if (moveCounter===10){
 		stars[0].remove();
+		rankingStars = '<i class="fa fa-star"></i> <i class="fa fa-star"></i>';
 	}
 	if (moveCounter===15){
 		stars[1].remove();
+		rankingStars = '<i class="fa fa-star"></i>';
 	}
 }
 
@@ -100,7 +106,10 @@ function lockCardsOpen(listOfCards){
 	openCards = [];
 	pairCounter += 1;
 	if (pairCounter === 8){
-		alert(`Congrats! You won in ${moveCounter} moves.`);
+		finished.classList.add('modal');
+		message.textContent = `You won in ${moveCounter} moves. Your ranking is `;
+		ranking.innerHTML = rankingStars;
+
 	}
 	incrementMoves();
 }
@@ -132,7 +141,9 @@ function activeCard(card){
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', respondToTheClick);
 const restart = document.querySelector('.restart')
+const restarto = document.querySelector('.restarto')
 restart.addEventListener('click', restartFunction);
+restarto.addEventListener('click', restartFunction);
 
 //functions to handle Events
 function respondToTheClick(event){
@@ -153,8 +164,9 @@ function hideUnmatchedPair(){
 function restartFunction(){
 	moveCounter = 0;
 	pairCounter = 0;
-	movesDisplay.textContent = moveCounter;
+	 movesDisplay.textContent = moveCounter;
 	hideCards(cardElements);
 	shuffleCards();
+	finished.classList.remove('modal');
 	//TODO: reset stars
 }
