@@ -44,10 +44,13 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  	  + add star rating: starts with 3 stars, goes down after x moves
+	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
+	  + add a reset table functionality
 
- 	  + add a reset table functionality
+	  + reset stars too
+	  + change msg to a modal
  	  + add a timer
- 	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
+
  	  -
  */
 shuffleCards();
@@ -55,15 +58,21 @@ let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
 const movesDisplay = document.querySelector('.moves');
-const star = document.getElementsByClassName('fa-star');
+const stars = document.getElementsByClassName('fa-star');
 
 
 function removeStar(moveCounter){
 	if (moveCounter===10){
-		star[0].remove();
+		stars[0].remove();
 	}
 	if (moveCounter===15){
-		star[1].remove();
+		stars[1].remove();
+	}
+}
+
+function resetStars(){
+	while (stars.length<3){
+		//add star to a star display
 	}
 }
 
@@ -88,13 +97,12 @@ function lockCardsOpen(listOfCards){
 		const oneCard=listOfCards[i];
 		oneCard.classList.add('match');
 	}
-
 	openCards = [];
-
 	pairCounter += 1;
 	if (pairCounter === 8){
 		alert(`Congrats! You won in ${moveCounter} moves.`);
 	}
+	incrementMoves();
 }
 
 function hideCards(listOfCards){
@@ -110,7 +118,6 @@ function activeCard(card){
 	openCard(card);
 
 	if (openCards.length>1){
-
 		if (openCards[0].innerHTML === openCards[1].innerHTML){
 			if(openCards[0] !== openCards[1]){  //prevents adding 'matched' class to a card with double clicking
 			lockCardsOpen(openCards);
