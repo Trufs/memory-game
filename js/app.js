@@ -171,4 +171,32 @@ function restartFunction(){
 	shuffleCards();
 	finished.classList.remove('modal');
 	resetStars();
+	timeZero = new Date();
+	upTime(timeZero);
+}
+
+/*
+* Timer based on:
+* Basic Count Up from Date and Time
+* Author: @mrwigster / trulycode.com
+*/
+let timeZero = new Date();
+
+window.onload=function() {
+  // Month,Day,Year,Hour,Minute,Second
+  upTime(timeZero); //czas, w ktorym funkcja zostala wywolana
+}
+function upTime(countTo) {
+  now = new Date();  //czas obecny - caly czas sie zmienia
+  countTo = new Date(countTo);
+  difference = (now-countTo);  //roznica miedzy rozpoczeciem liczenia a teraz
+
+  mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+  secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+
+  document.getElementById('minutes').firstChild.nodeValue = mins;
+  document.getElementById('seconds').firstChild.nodeValue = secs;
+
+  clearTimeout(upTime.to);
+  upTime.to=setTimeout(function(){ upTime(countTo); },1000);
 }
