@@ -53,10 +53,11 @@ function shuffle(array) {
  	  -
  */
 
-shuffleCards();
+const timeZero = new Date();
 let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
+let gameIsFinished = false;
 const movesDisplay = document.querySelector('.moves');
 const starDisplay = document.querySelector('.stars');
 const starWrappers = starDisplay.getElementsByTagName('li');
@@ -108,6 +109,7 @@ function lockCardsOpen(listOfCards){
 	openCards = [];
 	pairCounter += 1;
 	if (pairCounter === 2){
+		gameIsFinished = true;
 		finished.classList.add('modal');
 		message.textContent = `You won in ${moveCounter} moves. Your ranking is `;
 		ranking.innerHTML = rankingStars;
@@ -141,15 +143,23 @@ function activeCard(card){
 		}
 	}
 }
-
+//Event Listeners
+const start = document.querySelector('.start');
 const deck = document.querySelector('.deck');
-deck.addEventListener('click', respondToTheClick);
 const restart = document.querySelector('.restart')
 const restarto = document.querySelector('.restarto')
+start.addEventListener('click', startTheGame);
+deck.addEventListener('click', respondToTheClick);
 restart.addEventListener('click', restartFunction);
 restarto.addEventListener('click', restartFunction);
 
 //functions to handle Events
+function startTheGame(event){
+	shuffleCards();
+	start.classList.add('hide');
+	upTime(timeZero);
+}
+
 function respondToTheClick(event){
 	addToList(event.target);
 	if(openCards[0] === openCards[1]){
@@ -182,17 +192,14 @@ function restartFunction(){
 * Basic Count Up from Date and Time
 * Author: @mrwigster / trulycode.com
 */
-let timeZero = new Date();
 
-window.onload=function() {
-  upTime(timeZero); //czas, w ktorym funkcja zostala wywolana
-}
+
 function upTime(countTo) {
   now = new Date();  //czas obecny - caly czas sie zmienia
   countTo = new Date(countTo);  //timeZero, czyli kiedy fcja zostala wywolana
   difference = (now-countTo);  //roznica miedzy rozpoczeciem liczenia a teraz
 
-  if (pairCounter < 2){	//now it stops counting when game is won
+  if (!gameIsFinished){	//now it stops counting when game is won
 	  mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
 	  secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
 }

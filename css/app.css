@@ -110,9 +110,33 @@ h1 {
 }
 
 /*
- * Styles for the Modal
+ * Styles for the Modals
  */
 
+/*start modal*/
+.start {
+    width: 30%;
+    height: 20%;
+    display: block;
+    z-index: 1;
+    position: fixed;
+    cursor: pointer;
+    background-color: #fefefe;
+    margin:auto;
+    padding: 20px;
+    border: 1px solid #888;
+    font-size: 4em;
+}
+
+.hide {
+    display: none;
+}
+
+.startMessage {
+    margin: auto;
+}
+
+/*finish modal*/
 .message {
     display: none;
 }
