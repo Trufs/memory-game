@@ -50,8 +50,6 @@ function shuffleCards(){
   	  + change msg to a modal
 	  + reset stars too
  	  + add a timer
-
-		+ why is ranking not displayed correctly in the end-game message?
  	  -
  */
 
@@ -110,16 +108,14 @@ function lockCardsOpen(listOfCards){
 	}
 	openCards = [];
 	pairCounter += 1;
+	incrementMoves();
 	if (pairCounter === 2){
 		gameIsFinished = true;
 		finished.classList.add('modal');
 		message.textContent = `You won in ${moveCounter} moves. Your ranking is `;
 		ranking.innerHTML = rankingStars;
-		// document.getElementById('minutes').firstChild.nodeValue = '00';
-  // 		document.getElementById('seconds').firstChild.nodeValue = '00';
-
 	}
-	incrementMoves();
+
 }
 
 function hideCards(listOfCards){
