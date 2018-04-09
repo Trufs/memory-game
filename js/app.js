@@ -100,8 +100,9 @@ let gameIsFinished = false;
 
 //Event listeners for game functions
 const start = document.querySelector('.start');
+const startMsg = document.querySelector('.start-content');
 const deck = document.querySelector('.deck');
-start.addEventListener('click', startTheGame);
+startMsg.addEventListener('click', startTheGame);
 deck.addEventListener('click', clickOnCards);
 
 //Event handlers for playing the game
