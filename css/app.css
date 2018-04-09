@@ -87,9 +87,11 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 50%;
+    text-align: center;
+    width: 57%;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .score-panel .stars {
@@ -97,16 +99,28 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    float: left;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    font-size: 2em;
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    font-size: 2em;
+}
+
+.movesDisplay {
+    font-size: 1.5em;
+}
+
+#countup {
+    width: 30%;
+    font-size: 1.5em;
 }
 
 /*
