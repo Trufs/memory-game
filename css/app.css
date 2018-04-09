@@ -30,8 +30,9 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Coda', sans-serif;
+    font-weight: 600;
+    font-size: 2.5em;
 }
 
 /*
@@ -39,7 +40,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
+    width: 680px;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
@@ -88,7 +89,7 @@ h1 {
 
 .score-panel {
     text-align: center;
-    width: 57%;
+    width: 700px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -105,13 +106,13 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .movesDisplay {
