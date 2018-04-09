@@ -115,16 +115,18 @@ h1 {
 
 /*start modal*/
 .start {
-    width: 30%;
+    width: 40%;
     height: 20%;
     display: block;
     z-index: 1;
     position: fixed;
     cursor: pointer;
-    background-color: #fefefe;
+    background-color: #02ccba;
     margin:auto;
-    padding: 20px;
+    padding: 3%;
     border: 1px solid #888;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     font-size: 4em;
 }
 
@@ -133,7 +135,7 @@ h1 {
 }
 
 .startMessage {
-    margin: auto;
+    margin: 0 auto;
 }
 
 /*finish modal*/
