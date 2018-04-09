@@ -10,15 +10,6 @@ const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"><
  *   - add each card's HTML to the page
  */
 
-const cardElements = document.getElementsByClassName('card');
-
-function shuffleCards(){
-	 const shuffledList = shuffle(listOfCards);
-	 for (let i =0; i<shuffledList.length; i++) {
-	 	const oneCard = cardElements[i];
-		oneCard.innerHTML=shuffledList[i];
-	}
-}
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -32,6 +23,16 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+const cardElements = document.getElementsByClassName('card');
+
+function shuffleCards(){
+	 const shuffledList = shuffle(listOfCards);
+	 for (let i =0; i<shuffledList.length; i++) {
+	 	const oneCard = cardElements[i];
+		oneCard.innerHTML=shuffledList[i];
+	}
 }
 
 /*
@@ -50,10 +51,11 @@ function shuffle(array) {
 	  + reset stars too
  	  + add a timer
 
+		+ why is ranking not displayed correctly in the end-game message?
  	  -
  */
 
-const timeZero = new Date();
+let timeZero;
 let openCards = [];
 let moveCounter = 0;
 let pairCounter = 0;
@@ -154,10 +156,24 @@ restart.addEventListener('click', restartFunction);
 restarto.addEventListener('click', restartFunction);
 
 //functions to handle Events
-function startTheGame(event){
+function startTheGame(){  //it works properly
 	shuffleCards();
 	start.classList.add('hide');
+	timeZero = new Date();
 	upTime(timeZero);
+	gameIsFinished = false;
+}
+
+function restartFunction(){  //the timer restarts properly now
+	gameIsFinished = true;
+	moveCounter = 0;
+	pairCounter = 0;
+	movesDisplay.textContent = moveCounter;
+	hideCards(cardElements);
+	finished.classList.remove('modal');
+	resetStars();
+	start.classList.remove('hide');
+
 }
 
 function respondToTheClick(event){
@@ -172,19 +188,8 @@ function respondToTheClick(event){
 
 function hideUnmatchedPair(){
 	hideCards(openCards);
-	incrementMoves();
-}
-
-function restartFunction(){
-	moveCounter = 0;
-	pairCounter = 0;
-	movesDisplay.textContent = moveCounter;
-	hideCards(cardElements);
-	shuffleCards();
-	finished.classList.remove('modal');
-	resetStars();
 	timeZero = new Date();
-	upTime(timeZero);
+	incrementMoves();
 }
 
 /*
