@@ -183,14 +183,16 @@ function hideCards(listOfCards){
  */
 
 const finished = document.querySelector('.message');
-const message = document.querySelector('.modal-content');
+const message = document.querySelector('.modal-text');
+const timing = document.querySelector('.modal-time');
 const ranking = document.querySelector('.ranking');
 
 function gameIsWon(){
 	gameIsFinished = true;
 	finished.classList.add('modal');
-	message.textContent = `You won in ${moveCounter} moves. Your ranking is `;
-	ranking.innerHTML = rankingStars;
+	message.textContent = `You won in ${moveCounter} moves.`;
+	ranking.innerHTML = `Your ranking is ${rankingStars}`;
+		timing.textContent = `It took you ${mins} minutes and ${secs} seconds.`;
 }
 
 
