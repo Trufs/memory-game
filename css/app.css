@@ -110,7 +110,7 @@ h1 {
     float: left;
 }
 
-.score-panel .stars li {  /*TODO: stars are differently aligned after the reset */
+.score-panel .stars li {
     list-style: none;
     display: inline-block;
 
@@ -137,7 +137,7 @@ h1 {
     display: block;
     z-index: 1;
     position: fixed;
-    width: 100%;
+    width: 110%;
     height: 110%;
     background-color: rgba(0,0,0,0.4);
     display: flex;
@@ -145,7 +145,7 @@ h1 {
 
 .start-content {
     width: 30%;
-    min-width: 400px;
+    min-width: 350px;
     height: 10%;
     cursor: pointer;
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
@@ -175,7 +175,7 @@ h1 {
     display: block;
     z-index: 1;
     position: fixed;
-    width: 100%;
+    width: 110%;
     height: 110%;
     background-color: black;
     background-color: rgba(0,0,0,0.4);
@@ -237,6 +237,16 @@ h1 {
         height: 95px;
         width: 95px;
     }
+
+    .modal-title {
+        font-size: 1.5em;
+    }
+
+    .modal-content {
+        font-size: 1em;
+        width: 60%;
+        height: 40%;
+    }
 }
 
 @media screen and (max-width:500px){
@@ -261,5 +271,97 @@ h1 {
     .deck .card.match {
         font-size: 23px;
     }
+
+    .start-content {
+        font-size: 2em;
+    }
 }
 
+@media screen and (max-width:400px){
+    .score-panel {
+        width: 320px;
+        font-size: 0.75em;
+    }
+    .deck{
+        width: 330px;
+        min-height: 380px;
+    }
+
+    .deck .card {
+        height: 60px;
+        width: 60px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width:350px){
+    .score-panel {
+        width: 270px;
+        font-size: 0.65em;
+    }
+    .deck{
+        width: 260px;
+        min-height: 260px;
+        padding: 22px;
+    }
+
+    .deck .card {
+        height: 45px;
+        width: 45px;
+    }
+
+    .deck .card.show {
+        font-size: 20px;
+    }
+
+    .deck .card.match {
+        font-size: 20px;
+    }
+
+    .start-content {
+        min-width: 250px;
+    }
+
+    .modal-content {
+        width: 80%;
+        height: 60%;
+    }
+
+}
+
+@media screen and (max-width:250px){
+    .score-panel {
+        width: 200px;
+        font-size: 0.5em;
+    }
+    .deck{
+        width: 200px;
+        min-height: 200px;
+        padding: 22px;
+    }
+
+    .deck .card {
+        height: 35px;
+        width: 35px;
+    }
+
+    .deck .card.show {
+        font-size: 15px;
+    }
+
+    .deck .card.match {
+        font-size: 15px;
+    }
+
+    .start-content {
+        min-width: 150px;
+        font-size: 1.25em;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+}
