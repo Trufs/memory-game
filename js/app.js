@@ -7,27 +7,27 @@ const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"><
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+	var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+	while (currentIndex !== 0) {
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	}
 
-    return array;
+	return array;
 }
 
 //Shuffle cards and lay them on the table
 const cardElements = document.getElementsByClassName('card');
 
 function shuffleCards(){
-	 const shuffledList = shuffle(listOfCards);
-	 for (let i =0; i<shuffledList.length; i++) {
-	 	const oneCard = cardElements[i];
-		oneCard.innerHTML=shuffledList[i];
+	const shuffledList = shuffle(listOfCards);
+	for (let i =0; i<shuffledList.length; i++) {
+	    const oneCard = cardElements[i];
+	    oneCard.innerHTML= shuffledList[i];
 	}
 }
 
@@ -73,20 +73,20 @@ function incrementMoves(){
 let timeZero;
 
 function upTime(countTo) {
-  now = new Date();  //czas obecny - caly czas sie zmienia
-  countTo = new Date(countTo);  //timeZero, czyli kiedy fcja zostala wywolana
-  difference = (now-countTo);  //roznica miedzy rozpoczeciem liczenia a teraz
+	now = new Date();
+	countTo = new Date(countTo);
+	difference = (now-countTo);
 
-  if (!gameIsFinished){	//now it stops counting when game is won
-	  mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
-	  secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
-}
+	if (!gameIsFinished){	//now it stops counting when game is won
+		mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+		secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+	}
 
-  document.getElementById('minutes').firstChild.nodeValue = mins;
-  document.getElementById('seconds').firstChild.nodeValue = secs;
+	document.getElementById('minutes').firstChild.nodeValue = mins;
+	document.getElementById('seconds').firstChild.nodeValue = secs;
 
-  clearTimeout(upTime.to);
-  upTime.to=setTimeout(function(){upTime(countTo);}, 1000);
+	clearTimeout(upTime.to);
+	upTime.to=setTimeout(function(){upTime(countTo);}, 1000);
 }
 
 
@@ -118,8 +118,7 @@ function clickOnCards(event){
 	addToList(event.target);
 	if(openCards[0] === openCards[1]){
 		openCards.pop(event.target);
-	}
-	else{
+	} else {
 		activeCard(event.target);
 	}
 }
@@ -143,8 +142,7 @@ function activeCard(card){
 			if(openCards[0] !== openCards[1]){  //prevents adding 'matched' class to a card with double clicking
 			lockCardsOpen(openCards);
 			}
-		}
-		else {
+		} 	else {
 			deck.addEventListener('click', hideUnmatchedPair);
 		}
 	}
@@ -221,7 +219,7 @@ function restartFunction(){
 
 //Function restarting star display
 function resetStars(){
-	for (let i=0;i<=3-starWrappers.length;i++){
+	for (let i=0;i<3-starWrappers.length;i++){
 		starDisplay.insertAdjacentHTML('beforeend', '<li><i class="fa fa-star"></i></li>');
 	}
 }
