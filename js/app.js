@@ -161,7 +161,7 @@ function lockCardsOpen(listOfCards){
 	openCards = [];
 	pairCounter += 1;
 	incrementMoves();
-	if (pairCounter === 2){
+	if (pairCounter === 8){
 		gameIsWon();
 	}
 
@@ -219,30 +219,5 @@ function restartFunction(){
 
 //Function restarting star display
 function resetStars(){
-	// for (let i=0;i<3-starWrappers.length;i++){
 		starDisplay.innerHTML ='<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
-
 }
-
-
-
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- 	  + add star rating: starts with 3 stars, goes down after x moves
-	  - other problem: user should be blocked from opening third card before closing down the first two (if they're unmatched). perhaps changing dblclick to click could prevent this
-	  + add a reset table functionality
-  	  + change msg to a modal
-	  + reset stars too
- 	  + add a timer
-
- 	  -fourth star is sometimes added when clicking outside the cards but onto the table (possibly only after restarting?) However, stars are displayed correctly in the final message
- */
