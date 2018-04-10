@@ -219,9 +219,9 @@ function restartFunction(){
 
 //Function restarting star display
 function resetStars(){
-	for (let i=0;i<3-starWrappers.length;i++){
-		starDisplay.insertAdjacentHTML('beforeend', '<li><i class="fa fa-star"></i></li>');
-	}
+	// for (let i=0;i<3-starWrappers.length;i++){
+		starDisplay.innerHTML ='<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+
 }
 
 
