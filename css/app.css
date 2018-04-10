@@ -137,8 +137,9 @@ h1 {
     display: block;
     z-index: 1;
     position: fixed;
-    width: 110%;
-    height: 110%;
+    overflow: auto;
+    width: 150%;
+    height: 150%;
     background-color: rgba(0,0,0,0.4);
     display: flex;
 }
@@ -175,8 +176,8 @@ h1 {
     display: block;
     z-index: 1;
     position: fixed;
-    width: 110%;
-    height: 110%;
+    width: 150%;
+    height: 150%;
     background-color: black;
     background-color: rgba(0,0,0,0.4);
     display: flex;

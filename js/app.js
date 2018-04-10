@@ -70,7 +70,7 @@ function incrementMoves(){
 * Author: @mrwigster / trulycode.com
 */
 
-let timeZero;
+let timeZero, now, difference, mins, secs;
 
 function upTime(countTo) {
 	now = new Date();
@@ -200,8 +200,8 @@ function gameIsWon(){
  */
 
 //Event listeners for restarting
-const restart = document.querySelector('.restart')
-const restarto = document.querySelector('.restarto')
+const restart = document.querySelector('.restart');
+const restarto = document.querySelector('.restarto');
 restart.addEventListener('click', restartFunction);
 restarto.addEventListener('click', restartFunction);
 
