@@ -2,8 +2,8 @@
 /*
  * -----Preparing the table-----
  */
-const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-bolt"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-cube"></i>', '<i class="fa fa-diamond"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-bolt"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-cube"></i>', '<i class="fa fa-diamond"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-paper-plane-o"></i>'];
-
+const listOfCards = ['<i class="fa fa-anchor"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-bolt"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-cube"></i>', '<i class="fa fa-diamond"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-paper-plane-o"></i>'];
+const doubledListOfCards = listOfCards.concat(listOfCards);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -24,7 +24,7 @@ function shuffle(array) {
 const cardElements = document.getElementsByClassName('card');
 
 function shuffleCards(){
-	const shuffledList = shuffle(listOfCards);
+	const shuffledList = shuffle(doubledListOfCards);
 	for (let i =0; i<shuffledList.length; i++) {
 	    const oneCard = cardElements[i];
 	    oneCard.innerHTML= shuffledList[i];
